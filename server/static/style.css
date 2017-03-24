@@ -1,0 +1,88 @@
+body {
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+/*
+#background-image {
+    position: fixed;
+    z-index: -2;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-image: url(/res/background_image);
+    background-size: cover;
+    -webkit-filter: blur(15px);
+    -moz-filter: blur(15px);
+    -o-filter: blur(15px);
+    -ms-filter: blur(15px);
+    filter: blur(15px);
+}
+
+#background-cover {
+    position: fixed;
+    z-index: -1;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+*/
+
+#container {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: #3333AA;
+    /*color: #000000;*/
+    color: #FFFFFF;
+}
+
+.top-left {
+    position: fixed;
+    top: 20px;
+    left: 40px;
+    font-size: 24px;
+    line-height: 36px;
+}
+
+.update-time {
+    position: fixed;
+    top: 20px;
+    right: 40px;
+    font-size: 12px;
+    line-height: 36px;
+}
+
+.general {
+    position: fixed;
+    width: 100%;
+    top: 80px;
+    left: 40px;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.general-item-key {
+    font-weight: bold;
+    padding-right: 36px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.graph {
+    margin-top: 22px;
+    margin-bottom: 22px;
+}
+
+.graph-label {
+    font-size: 14px;
+}

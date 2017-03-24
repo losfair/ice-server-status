@@ -1,0 +1,45 @@
+html
+	head
+		meta charset="utf-8"
+		link rel="stylesheet" href="/static/style.css"
+		title => "服务器状态"
+		script
+			_ => "var info = { "
+			_ => "free_mem: "
+			_ => [free_mem]
+			_ => ", total_mem: "
+			_ => [total_mem]
+			_ => " };"
+	body
+		div
+			div #background-image
+			div #background-cover
+
+		div #container
+			div .top-left => "服务器状态"
+			div .update-time
+				_ => "更新时间: "
+				_ => [update_time]
+			div .general
+				table
+					tr
+						td .general-item-key => "负载"
+						td .general-item-value => [load_avg]
+					tr @invisible="true"
+						td .general-item-key => "主机名"
+						td .general-item-value => [hostname]
+					tr
+						td .general-item-key => "架构"
+						td .general-item-value => [arch]
+					tr
+						td .general-item-key => "CPU 型号"
+						td .general-item-value => [cpu_model]
+					tr
+						td .general-item-key => "运行时间"
+						td .general-item-value => [uptime]
+				
+				div .full-width .graph
+					p .graph-label => "内存用量"
+					canvas #mem-usage width="800px" height="20px"
+
+		script src="/static/controller.js"
