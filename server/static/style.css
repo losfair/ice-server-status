@@ -63,7 +63,7 @@ body {
 .top-title {
     position: absolute;
     bottom: 20px;
-    left: 20px;
+    left: 50px;
     color: #FFFFFF;
     font-size: 24px;
     line-height: 36px;
@@ -90,9 +90,10 @@ body {
     width: calc(100% - 80px);
     align-items: center;
     justify-content: center;
+    flex-direction: row;
 }
 
-.requests {
+.card {
     display: block;
     font-size: 16px;
     line-height: 24px;
@@ -106,7 +107,7 @@ body {
     margin: 0 auto;
 }
 
-.requests > table {
+.card > table {
     display: block;
     color: #333333;
 }

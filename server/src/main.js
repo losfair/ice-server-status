@@ -2,41 +2,56 @@ const ice = require("ice-node");
 const path = require("path");
 const webshot = require("webshot");
 const rp = require("request-promise");
-const template = require("./template.js");
 const background_image = require("./background_image.js");
-const status = require("./status.js");
+//const status = require("./status.js");
 const fs = require("fs");
 
 const app = new ice.Ice();
 
 let image_cache = null;
 let image_cache_time = 0;
+let server_stats = null;
 
 let listen_addr = process.argv[2];
+if(!listen_addr) throw new Error("Listen address required");
+
 let target = process.argv[3];
+if(!target) throw new Error("Target URL required");
 
 app.use("/static/", ice.static(path.join(__dirname, "../static/")));
 
 app.add_template("index.html", fs.readFileSync(path.join(__dirname, "../templates/index.html"), "utf-8"));
-app.get("/index", async req => {
-    let r = JSON.parse(await rp.get(target));
-    let requests = [];
+app.get("/index", req => {
+    let r = server_stats;
 
-    console.log(r);
-    
+    let requests = [];
     Object.keys(r.endpoint_hits).forEach(k => requests.push({
         path: k,
         count: r.endpoint_hits[k]
     }));
-
     requests = requests.sort((a, b) => b.count - a.count).slice(0, 10);
+
+    let processing_times = [];
+    Object.keys(r.endpoint_processing_times).forEach(k => processing_times.push({
+        path: k,
+        time: r.endpoint_processing_times[k]
+    }));
+    processing_times = processing_times.sort((a, b) => b.time - a.time).slice(0, 10);
+
+    let custom = [];
+    Object.keys(r.custom).forEach(k => custom.push({
+        key: k,
+        value: r.custom[k]
+    }));
 
     return new ice.Response({
         template_name: "index.html",
         template_params: {
             server_addr: target,
             update_time: new Date().toLocaleString(),
-            requests: requests
+            requests: requests,
+            processing_times: processing_times,
+            custom: custom
         }
     });
 });
@@ -72,6 +87,24 @@ function update_image() {
 }
 
 update_image();
+
+function sleep(ms) {
+    return new Promise(cb => setTimeout(() => cb(), ms));
+}
+
+async function update_stats() {
+    while(true) {
+        try {
+            let r = JSON.parse(await rp.get(target));
+            server_stats = r;
+        } catch(e) {
+            console.log(e);
+        }
+        await sleep(6000);
+    }
+}
+
+update_stats();
 
 async function run() {
     app.listen(listen_addr);

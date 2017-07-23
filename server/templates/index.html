@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class="main">
-            <div class="requests">
+            <div class="card" style="position: absolute; top: 0px; left: 20px">
                 <div class="card-title">路由命中统计</div>
                 <div class="card-content">
                     <table>
@@ -33,6 +33,32 @@
                             <tr>
                                 <td style="font-weight: bold; padding-right: 36px">{{ item.path }}</td>
                                 <td>{{ item.count }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+            <div class="card" style="position: absolute; top: 0px; left: calc(50% - 120px)">
+                <div class="card-title">请求处理时间</div>
+                <div class="card-content">
+                    <table>
+                        {% for item in processing_times %}
+                            <tr>
+                                <td style="font-weight: bold; padding-right: 36px">{{ item.path }}</td>
+                                <td>{{ item.time }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+            <div class="card" style="position: absolute; top: 0px; right: -200px">
+                <div class="card-title">其他统计信息</div>
+                <div class="card-content">
+                    <table>
+                        {% for item in custom %}
+                            <tr>
+                                <td style="font-weight: bold; padding-right: 36px">{{ item.key }}</td>
+                                <td>{{ item.value }}</td>
                             </tr>
                         {% endfor %}
                     </table>
