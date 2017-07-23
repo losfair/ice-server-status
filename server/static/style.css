@@ -1,8 +1,16 @@
+@font-face {
+    font-family: Lato-Light;
+    src: url(Lato-Light.ttf)
+}
+
 body {
     user-select: none;
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
+    font-family: Arial;
+    /*background-color: #FFFFFF;*/
+    color: #333333;
 }
 
 /*
@@ -15,11 +23,6 @@ body {
     height: 100%;
     background-image: url(/res/background_image);
     background-size: cover;
-    -webkit-filter: blur(15px);
-    -moz-filter: blur(15px);
-    -o-filter: blur(15px);
-    -ms-filter: blur(15px);
-    filter: blur(15px);
 }
 
 #background-cover {
@@ -29,7 +32,7 @@ body {
     left: 0px;
     width: 100%;
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.9);
 }
 */
 
@@ -39,39 +42,91 @@ body {
     left: 0px;
     width: 100%;
     height: 100%;
-    background-color: #3333AA;
-    /*color: #000000;*/
-    color: #FFFFFF;
+    background-color: #EEEEEE;
+    box-sizing: border-box;
+    color: #333333;
+    padding: 40px 40px;
 }
 
-.top-left {
-    position: fixed;
-    top: 20px;
-    left: 40px;
+#top-board {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    width: 100%;
+    height: 300px;
+    background-image: url(header.jpg);
+    background-size: cover;
+    font-family: Lato-Light;
+}
+
+.top-title {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: #FFFFFF;
     font-size: 24px;
     line-height: 36px;
 }
 
-.update-time {
-    position: fixed;
-    top: 20px;
-    right: 40px;
+.top-minor-info {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
     font-size: 12px;
-    line-height: 36px;
+    line-height: 18px;
+    color: #7F7F7F;
 }
 
-.general {
-    position: fixed;
-    width: 100%;
-    top: 80px;
-    left: 40px;
+.minor {
+    font-size: 12px;
+}
+
+.main {
+    position: absolute;
+    display: flex;
+    top: 350px;
+    box-sizing: border-box;
+    width: calc(100% - 80px);
+    align-items: center;
+    justify-content: center;
+}
+
+.requests {
+    display: block;
     font-size: 16px;
     line-height: 24px;
+    padding: 0;
+    /*background-color: #FFFFFF;*/
+    color: #333333;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 512px;
+    height: 256px;
+    margin: 0 auto;
 }
 
-.general-item-key {
-    font-weight: bold;
-    padding-right: 36px;
+.requests > table {
+    display: block;
+    color: #333333;
+}
+
+.card-title {
+    display: block;
+    width: 100%;
+    padding: 20px 20px;
+    box-sizing: border-box;
+    font-size: 20px;
+    height: 60px;
+    color: #3F51B5;
+    border-bottom: 1px solid #EEEEEE;
+}
+
+.card-content {
+    display: block;
+    width: 100%;
+    padding: 10px 20px;
+    padding-top: 0px;
 }
 
 .full-width {

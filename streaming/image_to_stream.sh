@@ -2,6 +2,6 @@
 
 while true
 do
-    curl http://127.0.0.1:1423/image
+    curl http://$1/image 2> /dev/null
     sleep 0.1
 done

@@ -23,7 +23,7 @@ function show_mem_usage() {
 }
 
 function init() {
-    show_mem_usage();
+    //show_mem_usage();
 }
 
 init();

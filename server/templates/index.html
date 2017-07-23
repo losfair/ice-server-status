@@ -1,0 +1,46 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/static/style.css" />
+    <title>Ice Server 状态: {{ server_addr }}</title>
+    <script>
+    </script>
+</head>
+
+<body>
+    <div>
+        <div id="background-image"></div>
+        <div id="background-cover"></div>
+    </div>
+    <div id="container">
+        <div id="top-board">
+            <div class="top-title">
+                <span>Ice Server 状态</span><br />
+                
+            </div>
+            <div class="top-minor-info">
+                <span>{{ server_addr }}</span><br />
+                <span>更新时间: {{ update_time }}</span>
+            </div>
+        </div>
+        <div class="main">
+            <div class="requests">
+                <div class="card-title">路由命中统计</div>
+                <div class="card-content">
+                    <table>
+                        {% for item in requests %}
+                            <tr>
+                                <td style="font-weight: bold; padding-right: 36px">{{ item.path }}</td>
+                                <td>{{ item.count }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/static/controller.js"></script>
+</body>
+
+</html>
